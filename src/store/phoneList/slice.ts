@@ -5,7 +5,7 @@ export const DEFAULT_PAGE_NUMBER = 1;
 export const DEFAULT_PAGE_SIZE = 7;
 
 interface IState {
-  phones: PhoneResProps[];
+  phones: PhoneResProps[] | null;
   phone: PhoneResProps | null;
   searchQuery: string;
   page: number;
@@ -18,7 +18,7 @@ interface IState {
 
 const initialState: IState = {
   intervalID: null,
-  phones: [],
+  phones: null,
   page: DEFAULT_PAGE_NUMBER,
   phone: null,
   searchQuery: '',

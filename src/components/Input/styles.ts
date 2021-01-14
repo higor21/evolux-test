@@ -10,6 +10,7 @@ export const Ipt = styled.div<IptProps>`
   box-shadow: inset 0 0 10px -2px ${(props) => (props.valid ? Colors.shadow : Colors.red)};
   width: max-content;
   padding: 0.5em 1em;
+  background-color: ${Colors.white};
 
   & > input {
     color: ${Colors.black};

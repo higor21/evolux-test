@@ -40,8 +40,8 @@ const PhoneEdit: React.FC<FormikProps<FormValues>> = ({
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (isValid && dirty) {
-      dispatch(addPhone(values));
+    if (isValid && dirty && currencyValue) {
+      dispatch(addPhone({ ...values, currency: currencyValue?.value }));
       setRunLoading(true);
     }
   };

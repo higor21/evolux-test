@@ -1,10 +1,16 @@
 import { HTMLAttributes } from 'react';
+import { Colors } from 'shared/colors';
 import styled from 'styled-components';
 
-export const BtnWrapper = styled.button<{ btnColor: string } & HTMLAttributes<HTMLButtonElement>>`
+interface BtnProps extends HTMLAttributes<HTMLButtonElement> {
+  btnColor: string;
+  inShadow?: boolean;
+}
+export const BtnWrapper = styled.button<BtnProps>`
   border-radius: 1em;
   box-shadow: 0 0 10px -6px;
   transition-duration: 0.4s;
+  background-color: ${Colors.white};
 
   & > span {
     color: ${(props) => props.btnColor};
@@ -13,7 +19,10 @@ export const BtnWrapper = styled.button<{ btnColor: string } & HTMLAttributes<HT
   }
 
   &:hover {
-    box-shadow: ${({ btnColor, disabled}) => disabled ? 'none': `0 0 10px -2.5px ${btnColor}`};
+    box-shadow: ${({ btnColor, disabled, inShadow }) =>
+      disabled
+        ? 'none'
+        : `${inShadow ? 'inset' : ''} 0 0 10px -2.5px ${btnColor}`};
     transition-duration: 0.4s;
   }
 `;

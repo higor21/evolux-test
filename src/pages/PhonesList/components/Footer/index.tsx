@@ -7,7 +7,7 @@ import { DEFAULT_PAGE_NUMBER, setPage } from 'store/phoneList/slice';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  background: ${Colors.white};
+  background: ${Colors.blue};
   border-radius: 15px;
   position: sticky;
   bottom: 1.5rem;

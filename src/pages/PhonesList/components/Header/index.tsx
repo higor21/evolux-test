@@ -23,7 +23,14 @@ const PHONE_NUMBERS_LENGTH = 13;
 
 const HeaderWrapper = styled.div`
   border-radius: 1em;
-  background-color: ${Colors.white};
+  background-color: ${Colors.blue};
+
+  & > small {
+    color: ${Colors.white};
+    font-size: 1.2em;
+    text-align: center;
+    margin: 0.25rem 0;
+  }
 `;
 
 const Header: React.FC<any> = () => {
@@ -61,20 +68,27 @@ const Header: React.FC<any> = () => {
   const isAMobileDevice = width <= DEFAULT_DEVICE_WIDTH;
 
   return (
-    <HeaderWrapper className="d-flex p-3 align-items-center justify-content-between">
-      <Input
-        placeholder="Search for a number"
-        value={search}
-        onChange={handleOnChageValue}
-        maxLength={PHONE_NUMBERS_LENGTH}
-        isSearchLoading={runSpinner}
-      />
-      <Button
-        customIcon={PhoneIcon}
-        customLabel="New Phone"
-        withoutLabel={isAMobileDevice}
-        onClick={() => history.push(RouteNames.phoneAdd)}
-      />
+    <HeaderWrapper className="d-flex pb-3 px-3 flex-column justify-content-between">
+      <small style={{ color: Colors.white }}>
+        Search for any part of the phone number.
+      </small>
+      <div className="d-flex align-items-center justify-content-between">
+        <Input
+          className="mr-2"
+          placeholder="Search for a number"
+          value={search}
+          onChange={handleOnChageValue}
+          maxLength={PHONE_NUMBERS_LENGTH}
+          isSearchLoading={runSpinner}
+        />
+        <Button
+          customIcon={PhoneIcon}
+          customLabel="New Phone"
+          insetShadow
+          withoutLabel={isAMobileDevice}
+          onClick={() => history.push(RouteNames.phoneAdd)}
+        />
+      </div>
     </HeaderWrapper>
   );
 };

@@ -18,6 +18,7 @@ const Input: React.FC<Props> = ({
   label,
   mask,
   withoutIcon,
+  className: classes,
   isSearchLoading,
   errorMsg = '',
   ...iptProps
@@ -32,7 +33,7 @@ const Input: React.FC<Props> = ({
   );
 
   return (
-    <IptWrapper>
+    <IptWrapper className={classes}>
       {label && <Label className="mb-0">{label}</Label>}
       <Ipt
         valid={errorMsg === ''}

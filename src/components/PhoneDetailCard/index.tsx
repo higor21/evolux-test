@@ -2,6 +2,7 @@ import { useWindowDimensions } from 'hooks';
 import React, { HTMLAttributes } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Colors } from 'shared/colors';
+import { formatNumber } from 'shared/helpers';
 import { Edit3Icon, TrashIcon } from 'shared/icons';
 import { PhoneProps } from 'shared/types';
 import { Button, Card, Number, PriceDetail } from './styles';
@@ -39,7 +40,7 @@ const PhoneDetailCard: React.FC<Props> = ({
       {...divProps}
       className={`py-2 px-3 w-100 d-flex ${cardStyle} align-items-center justify-content-between`}
     >
-      <Number>{phoneNumber}</Number>
+      <Number>{formatNumber(phoneNumber, '+## ## # ####-####')}</Number>
       <PriceDetail className={cardPriceDetailStyle}>
         <h3 className="title text-center">
           Cost in <strong>{currency}</strong>

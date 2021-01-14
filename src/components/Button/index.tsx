@@ -14,6 +14,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconSize?: number;
   withoutLabel?: boolean;
   isLoading?: boolean;
+  insetShadow?: boolean;
 }
 
 const Button: React.FC<Props> = ({
@@ -23,6 +24,7 @@ const Button: React.FC<Props> = ({
   iconSize = DEFAULT_ICON_SIZE,
   customLabel,
   withoutLabel,
+  insetShadow,
   isLoading,
   ...btnProps
 }) => {
@@ -45,6 +47,7 @@ const Button: React.FC<Props> = ({
     <BtnWrapper
       btnColor={color}
       className="d-flex align-items-center py-1 px-3"
+      inShadow={insetShadow}
       {...btnProps}
     >
       {!withoutLabel && <span className="mr-2">{label}</span>}

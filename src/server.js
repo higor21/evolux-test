@@ -85,10 +85,7 @@ const server = () => {
             .toString()
             .slice(2, 11 - uniqueCodeLen);
 
-          return `+${countryCode} ${stateCode} ${formatNumber(
-            `${i}${restOfNumber}`,
-            '# ####-####'
-          )}`;
+          return `${countryCode}${stateCode}${i}${restOfNumber}`;
         },
         currency: () =>
           currencySymbolsArr[

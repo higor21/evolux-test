@@ -11,8 +11,9 @@ import {
   phoneNumberMask,
   RouteNames,
 } from 'shared/constants';
+import { formatNumber } from 'shared/helpers';
 import { Edit3Icon } from 'shared/icons';
-import { OptPhoneProps, PhoneProps } from 'shared/types';
+import { OptPhoneProps, PhoneProps, PhoneResProps } from 'shared/types';
 import { RootState } from 'store';
 import { updatePhone } from 'store/phoneList/middlewares';
 import * as Yup from 'yup';
@@ -47,8 +48,13 @@ const PhoneEdit: React.FC<FormikProps<FormValues>> = ({
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (id && isValid && dirty) {
-      dispatch(updatePhone(Number.parseInt(id, 10), values));
+    if (id && isValid && dirty && currencyValue) {
+      dispatch(
+        updatePhone(Number.parseInt(id, 10), {
+          ...values,
+          currency: currencyValue?.value,
+        })
+      );
       setRunLoading(true);
     }
   };
@@ -63,10 +69,13 @@ const PhoneEdit: React.FC<FormikProps<FormValues>> = ({
   useEffect(() => {
     api
       .get(`phones/${id}`)
-      .then(({ phone }: any) => {
-        setValues(phone);
+      .then(({ phone: p }: any) => {
+        setValues({
+          ...p,
+          phoneNumber: formatNumber(p?.phoneNumber, '+## ## # ####-####'),
+        });
         setCurrencyValue(
-          currencyOptions.find(({ value: c }) => c === phone?.currency)
+          currencyOptions.find(({ value: c }) => c === p?.currency)
         );
         setIsStarting(false);
       })
